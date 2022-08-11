@@ -8,14 +8,14 @@ bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message: telebot.types.Message):
-    bot.send_message(message.chat.id, f"Привет,{message.chat.username}! Я умею конвертировать валюту. Чтобы узнать подробности нажми: /help")
+    bot.send_message(message.chat.id, f"Привет,{message.chat.username}!\nЯ умею конвертировать валюту. Чтобы узнать подробности нажми: /help")
 
 
 @bot.message_handler(commands=['help'])
 def help(message: telebot.types.Message):
     text = 'чтобы узнать курс валют, следуйте примеру (всё пишем через пробел):\n<укажите валюту, которую нужно перевести, например, "доллар"> \
 <напишите валюту, в которую вы хотите перевести первую валюту, например, "рубль"> \
-<количество переводимой валюты>\nВ итоге запрос должен выглядеть так: доллар рубль 1\nМожно выбрать и другие валюты: /values'
+<количество переводимой валюты>\nЗапрос должен выглядеть так: доллар рубль 1\nМожно выбрать и другие валюты: /values'
     bot.reply_to(message, text)
 
 
@@ -45,6 +45,7 @@ def convert(message: telebot.types.Message):
 
     text = f'цена {amount} {quote} в {base} - {total_base}'
     bot.send_message(message.chat.id, text)
+
 
 
 bot.polling(none_stop=True)
